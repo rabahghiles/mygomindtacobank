@@ -1,0 +1,71 @@
+// Variables - container max width
+$container-max-width: 1366px;
+
+// Variables - break points
+$breakpoint-tablet: 626px;
+$breakpoint-laptop: 977px;
+
+// Variables - font weight
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Variables - transition
+$ease-in: all ease-in .15s;
+
+
+
+// Mixins
+@mixin responsive($breakpoint) {
+    @if ($breakpoint == tablet) {
+		@media (min-width: $breakpoint-tablet) {
+			@content;
+		}
+    }@else if ($breakpoint == laptop) {
+		@media (min-width: $breakpoint-laptop) {
+			@content;
+		}
+    }
+    @else {
+      	@error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}";
+    }
+}
+
+// Global style
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Montserrat', sans-serif;
+}
+  
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.main-container {
+    width: 100%;
+    padding: 20px 0px;
+    overflow-x: hidden;
+
+    .sub-container {
+        width: 100%;
+        max-width: $container-max-width;
+        margin: 0 auto;
+        padding: 20px;
+        
+        @include responsive(laptop) {
+            padding: 40px;
+        }
+    }
+    
+}
+
+// Imports - App
+@import "./App.scss";
